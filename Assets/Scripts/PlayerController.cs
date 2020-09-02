@@ -6,8 +6,6 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject blockade;
-
     public float speed = 0;
     public TextMeshProUGUI countText;
     public GameObject winTextObject;
@@ -44,13 +42,6 @@ public class PlayerController : MonoBehaviour
             other.gameObject.SetActive(false);
             count++;
             SetCountText();
-        }
-    }
-
-    private void OnTriggerExit(Collider other){
-        if (other.gameObject.CompareTag("Blockade")){
-            other.gameObject.SetActive(false);
-            blockade.transform.position = blockade.transform.position + new Vector3(0,1,0);
         }
     }
 }
