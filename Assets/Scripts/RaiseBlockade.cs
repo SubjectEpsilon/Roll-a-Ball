@@ -9,16 +9,32 @@ public class RaiseBlockade : MonoBehaviour
     public GameObject thisCell;
     public GameObject nextCell;
 
+    public int currentCellCount;
+
+     public int currentCellCounter;
+
+
+    void Awake(){
+        currentCellCount = Cells.cellCount;
+        Cells.cellCount++;
+    }
+
+    void Update(){
+        currentCellCounter = Cells.cellCount;
+        if(Cells.cellCount == currentCellCount+4){
+            Destroy(thisCell);
+        }
+    }
 
     private void OnTriggerEnter(Collider other){
         if (other.gameObject.CompareTag("PlayerTag")){
-            GameObject cell = Instantiate(nextCell);
-            cell.transform.position = thisCell.transform.position + new Vector3(0,0,51);
+            Instantiate(nextCell).transform.position = thisCell.transform.position + new Vector3(0,0,51);
+            
         }
     }
     private void OnTriggerExit(Collider other){
         if (other.gameObject.CompareTag("PlayerTag")){
-            blockadeTrigger.SetActive(false);
+            //blockadeTrigger.SetActive(false);
             blockade.transform.position = blockade.transform.position + new Vector3(0,1,0);
         }
     }
